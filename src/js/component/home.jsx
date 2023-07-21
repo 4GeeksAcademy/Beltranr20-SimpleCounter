@@ -1,24 +1,25 @@
-import React from "react";
-
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
+import React, { useEffect, useState } from "react";
+import Digit from "./Digit";
 
 //create your first component
 const Home = () => {
+	let [counter, setCounter] = useState(0)
+	useEffect(()=> {
+		setInterval(() => {
+			setCounter(counter++)
+		}, 1000);
+	},[]) 
 	return (
+		// making the counter visible with 8 digits
 		<div className="text-center">
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
+			<Digit alpha= {Math.floor(counter/10000000)}/>
+			<Digit alpha= {Math.floor(counter/1000000)}/>
+			<Digit alpha= {Math.floor(counter/100000)}/>
+			<Digit alpha= {Math.floor(counter/10000)}/>
+			<Digit alpha= {Math.floor(counter/1000)}/>
+			<Digit alpha= {Math.floor(counter/100)}/>
+			<Digit alpha= {Math.floor(counter/10)}/>
+			<Digit alpha= {Math.floor(counter/1)}/>
 		</div>
 	);
 };
